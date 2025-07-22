@@ -83,19 +83,15 @@
       <label>Full Name:<br><input type="text" name="name" required></label><br><br>
       <label>Phone Number:<br><input type="tel" name="phone" required></label><br><br>
       <label>Email:<br><input type="email" name="email" required></label><br><br>
-
       <label><input type="radio" name="payment-method" value="card" checked onchange="togglePaymentMethod()"> Pay with Card</label><br>
       <label><input type="radio" name="payment-method" value="cash" onchange="togglePaymentMethod()"> Cash on Delivery</label><br><br>
-
       <div id="card-fields">
         <label>Name on Card:<br><input type="text" name="card-name"></label><br><br>
         <label>Card Number:<br><input type="text" name="card-number"></label><br><br>
         <label>Expiration Date:<br><input type="text" placeholder="MM/YY" name="card-exp"></label><br><br>
         <label>CVV:<br><input type="text" name="card-cvv"></label><br><br>
       </div>
-
       <input type="hidden" name="order-details" id="order-details">
-
       <button type="submit">Confirm Payment</button>
     </form>
   </div>
