@@ -36,6 +36,12 @@
     #card-fields {
       display: none;
     }
+    .product.coming-soon {
+      cursor: not-allowed;
+      opacity: 0.8;
+      background: #eee;
+      text-align: center;
+    }
   </style>
 </head>
 <body>
@@ -63,8 +69,8 @@
       <h3>monsieur</h3>
       <p>LE35.00</p>
     </div>
-    <div class="product" data-name="coming soon" data-price="35.00">
-      <h3>coming soon</h3>
+    <div class="product coming-soon">
+      <h3>Coming Soon</h3>
     </div>
   </div>
 
@@ -83,15 +89,19 @@
       <label>Full Name:<br><input type="text" name="name" required></label><br><br>
       <label>Phone Number:<br><input type="tel" name="phone" required></label><br><br>
       <label>Email:<br><input type="email" name="email" required></label><br><br>
+
       <label><input type="radio" name="payment-method" value="card" checked onchange="togglePaymentMethod()"> Pay with Card</label><br>
       <label><input type="radio" name="payment-method" value="cash" onchange="togglePaymentMethod()"> Cash on Delivery</label><br><br>
+
       <div id="card-fields">
         <label>Name on Card:<br><input type="text" name="card-name"></label><br><br>
         <label>Card Number:<br><input type="text" name="card-number"></label><br><br>
         <label>Expiration Date:<br><input type="text" placeholder="MM/YY" name="card-exp"></label><br><br>
         <label>CVV:<br><input type="text" name="card-cvv"></label><br><br>
       </div>
+
       <input type="hidden" name="order-details" id="order-details">
+
       <button type="submit">Confirm Payment</button>
     </form>
   </div>
@@ -204,6 +214,8 @@
 
     function attachProductClickHandlers() {
       document.querySelectorAll('.product').forEach(productEl => {
+        // Skip coming soon product (no data-name or has .coming-soon)
+        if (productEl.classList.contains('coming-soon')) return;
         productEl.addEventListener('click', () => {
           const product = productEl.dataset.name;
           const price = parseFloat(productEl.dataset.price);
